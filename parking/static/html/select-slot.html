@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Parking Slots</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .slot-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .slot {
+      background-color: #339af0;
+      color: white;
+      border: 2px solid #339af0;
+      border-radius: 10px;
+      width: 100px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .slot:hover {
+      background-color: #1c7ed6;
+    }
+
+    .slot.selected {
+      background-color: #ff6b6b;
+      border-color: #ff6b6b;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #2f9e44;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #22863a;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Select a Parking Slot</h2>
+
+  <div class="slot-container">
+    <div class="slot" data-id="1">Slot 1</div>
+    <div class="slot" data-id="2">Slot 2</div>
+    <div class="slot" data-id="3">Slot 3</div>
+    <div class="slot" data-id="4">Slot 4</div>
+    <div class="slot" data-id="5">Slot 5</div>
+    <div class="slot" data-id="6">Slot 6</div>
+    <div class="slot" data-id="7">Slot 7</div>
+    <div class="slot" data-id="8">Slot 8</div>
+  </div>
+
+  <button onclick="submitSlots()">Submit Slots</button>
+
+  <script>
+    // Toggle selection
+    document.querySelectorAll('.slot').forEach(slot => {
+      slot.addEventListener('click', () => {
+        slot.classList.toggle('selected');
+      });
+    });
+
+    // Handle slot submission
+    function submitSlots() {
+      const selected = [...document.querySelectorAll('.slot.selected')]
+        .map(slot => parseInt(slot.dataset.id));
+
+      if (selected.length === 0) {
+        alert("Please select at least one slot.");
+        return;
+      }
+
+      localStorage.setItem('selectedSlots', JSON.stringify(selected));
+      window.location.href = "vehicle-number.html";  // Redirect to next step
+    }
+  </script>
+<script src="firebase-init.js"></script>
+</body>
+</html>
