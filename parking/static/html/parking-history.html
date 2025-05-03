@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Parking History</title>
+  <style>
+    body {
+      margin: 0;
+      padding-top: 80px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #eef2f5;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(to right, #339af0, #1c7ed6);
+      color: white;
+      padding: 18px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    header .left h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    header .center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+    }
+
+    header .center a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    header .center a:hover {
+      color: #d0ebff;
+    }
+
+    main {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .entry {
+      background-color: #ffffff;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 5px solid #339af0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+      transition: transform 0.2s;
+    }
+
+    .entry:hover {
+      transform: scale(1.01);
+    }
+
+    .entry p {
+      margin: 6px 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .entry p strong {
+      color: #1c7ed6;
+    }
+
+    .no-history {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 18px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="left">
+      <h1>Parking History</h1>
+    </div>
+    <div class="center">
+      <a href="home.html">Home</a>
+      <a href="available-spots.html">Available Spots</a>
+    </div>
+  </header>
+
+  <main>
+    <div id="historyContainer"></div>
+  </main>
+
+  <script>
+    const historyContainer = document.getElementById("historyContainer");
+    const history = JSON.parse(localStorage.getItem("parkingHistory")) || [];
+
+    if (history.length === 0) {
+      historyContainer.innerHTML = "<p class='no-history'>No parking history found.</p>";
+    } else {
+      history.forEach(entry => {
+        const div = document.createElement("div");
+        div.className = "entry";
+        div.innerHTML = `
+          <p><strong>Vehicle Number:</strong> ${entry.vehicleNumber}</p>
+          <p><strong>Date:</strong> ${entry.date}</p>
+        `;
+        historyContainer.appendChild(div);
+      });
+    }
+  </script>
+<script src="firebase-init.js"></script>
+</body>
+</html>

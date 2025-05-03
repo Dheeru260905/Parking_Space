@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Parking Spot</title>
+    <link rel="stylesheet" href="../css/book-spot-styles.css"> <!-- Link to new CSS file -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome -->
+</head>
+<body class="light-mode"> <!-- Default to light mode -->
+    <header>
+        <h1>Book a Parking Spot</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="parking-history.html"><i class="fas fa-history"></i> Parking History</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Book a Parking Spot</h2>
+            <form id="booking-form" action="select-slot.html">
+                <label for="location">Location:</label>
+                <select id="location" name="location" required>
+                    <option value="" disabled selected>Select a location</option> <!-- Default option -->
+                    <option value="lb-nagar">LB Nagar</option>
+                    <option value="jubilee-hills">Jubilee Hills</option>
+                    <option value="gachibowli">Gachibowli</option>
+                    <option value="banjara-hills">Banjara Hills</option>
+                    <option value="kukatpally">Kukatpally</option>
+                    <option value="Raidurg">Raidurg</option>
+                </select>
+                <label for="slot">Slot:</label>
+                <select id="slot" name="slot" required>
+                    <option value="" disabled selected>Select a slot</option> <!-- Default option -->
+                </select>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+                <button type="submit">Book Now</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 UltraSonic Parking Solutions</p>
+    </footer>
+    <script src="../js/book-spot.js"></script> <!-- Link to new JavaScript file -->
+</body>
+<script src="firebase-init.js"></script>
+</html>
